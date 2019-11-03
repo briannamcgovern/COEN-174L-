@@ -10,7 +10,7 @@
     p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000}
     p.p2 {margin: 0.0px 0.0px 16.1px 0.0px; line-height: 28.0px; font: 24.0px Times; color: #0000e9; -webkit-text-stroke: #0000e9}
     span.s1 {font-kerning: none}
-    span.s2 {text-decoration: underline ; font-kerning: none}
+    span.s2 {text-decoration: none ; font-kerning: none}
   </style>
 </head>
 <body>
@@ -20,10 +20,19 @@
 	#header{
 		background-color: #781f1c;
 	}
+
+	p.p2 {
+		color:#ffffff;
+	}
+
+	.button, input[type=submit], input[type=button], .submit-row input, a.button {
+		background: #781f1c;
+	}
 	</style>
 	{% endblock %}
 	{% block branding %}</span></p>
 <p class="p2"><span class="s2">Admin Login</span></p>
 <p class="p1"><span class="s1">{% endblock %} {% block nav-global %}{% endblock %}<span class="Apple-converted-space"> </span></span></p>
+
 </body>
 </html>
