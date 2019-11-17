@@ -18,12 +18,22 @@ from django.urls import include, path
 from app import views
 from django.conf import settings
 from django.conf.urls import include, url
+from app.views import signup
+#from . import views
 
 urlpatterns = [
-    path('app/', include('app.urls')),
+    path('app/', include('app.urls')), #we don't need this anymore --> do any buttons lead to it?
     path('admin/', admin.site.urls),
-    path('create-sessions/', views.createSessions, name='createSessions'),
-    path('', views.home, name='home')
+    path('create-sessions/', views.createSessions, name='createSessions'), # this page doesn't render properly --> do any buttons lead to it?
+    path('', views.home, name='home'),
+	path('accounts/', include('django.contrib.auth.urls')), # this needs an additonal /<something>/ at the end to work (example: /accounts/login/) Is that the expected use for this route?
+	path('winners/', views.winners, name='winners'),
+	path('signup/redirect/', views.login), # this page doesn't render properly --> do any buttons lead to it?
+#path('redirect/', '/accounts/login/'),
+	url(r'^signup/$', views.signup, name='signup'),
+	path('profile/', views.ProfileView.as_view(), name='profile'),
+	path('accounts/profile/', views.ProfileView.as_view(), name='profile'),
+	path('adminindex/', views.adminindex, name='adminindex'),
 ]
 
 if 'survey' in settings.INSTALLED_APPS:

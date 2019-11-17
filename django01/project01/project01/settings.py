@@ -14,6 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+STAT=os.path.join(BASE_DIR, 'static')
 
 
 # Quick-start development settings - unsuitable for production
@@ -41,7 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrapform',
-    'survey'
+#'survey',
+	'survey.apps.DjangoSurveyAndReportConfig',
+	'app',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +62,7 @@ ROOT_URLCONF = 'project01.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),"static","templates"),os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),"static","templates","admin"),os.path.join(BASE_DIR,"templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,9 +126,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+	STAT,
+	]
+
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
 
 # Survey app
 # https://github.com/Pierre-Sassoulas/django-survey
 
 CHOICES_SEPARATOR = "," # Or another separator, like | or
+
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
+#LOGIN_REDIRECT_URL = '/profile.html'
+
+#SIGNUP_REDIRECT_URL = '/accounts/login'
 
