@@ -30,6 +30,7 @@ urlpatterns = [
 	path('winners/', views.winners, name='winners'),
 	path('signup/redirect/', views.login), # this page doesn't render properly --> do any buttons lead to it?
 #path('redirect/', '/accounts/login/'),
+	path('login/', views.login, name='login'), # new
 	url(r'^signup/$', views.signup, name='signup'),
 	path('profile/', views.ProfileView.as_view(), name='profile'),
 	path('accounts/profile/', views.ProfileView.as_view(), name='profile'),

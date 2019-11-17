@@ -31,7 +31,7 @@ def signup(request):
 			user = authenticate(username=username, password=raw_password)
 			auth_login(request, user)
 			# os.chdir("../../static/templates/registration/login.html")
-			response = redirect(reverse('login'))
+			response = redirect(reverse('login.html'))
 			return response
 	else:
 		return render(request, 'signup.html', {'form': UserCreationForm()})
