@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+<style>
+
+	* {
+		box-sizing: border-box;	
+	}
+
+	.header{
+		/*background-color: white;*/
+		margin: 0;
+		padding: 75px 0;
+	}
+
+	body{
+		background-color: white;
+		height: 100%;
+		width 100%;
+		font-family: 'Ariel', sans-serif;
+	}
+
+	.button-cont{
+		justify-content: center;
+  		display: inline-flex;
+	}
+
+	.button{
+		width: 300px;
+		background-color: #a41e35;
+  		color: white;
+  		/*border: 2px solid black;*/
+  		padding: 50px 56px;
+  		text-align: center;
+  		text-decoration: none;
+  		font-size: 20px;
+  		margin: 4px 2px;
+  		cursor: pointer;
+		border-radius: 70%;
+		transition-duration: 0.7s;
+	}
+
+	.logo {
+		width: 100%;
+		padding: 0 20px 0 20px;
+	}
+
+	.button:hover{
+		background-color: #690521;
+		color: white;
+	}
+
+/*	.button1{
+		position: relative;
+		top: 50%;
+		left: 300px
+	}
+
+	.button2{
+		position: relative;
+		top: 50%;
+		left: 850px;
+	}
+
+	.button3{
+		position: absolute;
+		top: 50%;
+		left: 1000px;
+	} 
+ */
+
+	ul{
+		list-style-type: none;
+		margin: 0;
+  		padding: 0;
+  		overflow: hidden;
+  		/*background-color: #333;*/
+	}
+
+	li a{
+  		display: block;
+  		/*color: white;*/
+  		text-align: center;
+  		padding: 14px 16px;
+  		text-decoration: none;
+		cursor: pointer;
+	}
+
+	li a:hover:not(.active) {
+  		background-color: #111;
+	}
+
+	li {
+  		float: left;
+	}
+
+	.active{
+		background-color: #d6ba7e;
+	}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+	<img class="logo" src="{% static "transparentSOE.png" %}" alt="Santa Clara University">
+</div>
+
+{# {% block win %} IT IS I.{% endblock %<ul> #}
+<ul>
+{% for survery_answers in survery_answer %}
+    <li> {{ win }} </li>
+{% endfor %}
+</ul>
+
+STORY
+<h2>{{ win }}</h2>
+</body>
+</html>

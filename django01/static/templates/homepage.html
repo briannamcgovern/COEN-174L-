@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+<style>
+
+	* {
+		box-sizing: border-box;	
+	}
+
+	.header{
+		/*background-color: white;*/
+		margin: 0;
+		padding: 75px 0;
+	}
+
+	body{
+		background-color: white;
+		height: 100%;
+		width 100%;
+		font-family: 'Ariel', sans-serif;
+	}
+
+	.button-cont{
+		justify-content: center;
+  		display: flex;
+	}
+
+	.button{
+		width: 300px;
+		background-color: #a41e35;
+  		color: white;
+  		/*border: 2px solid black;*/
+  		padding: 50px 56px;
+  		text-align: center;
+  		text-decoration: none;
+  		font-size: 20px;
+  		/*margin: 4px 2px;*/
+  		cursor: pointer;
+		border-radius: 70%;
+		transition-duration: 0.7s;
+	}
+
+	.logo {
+		width: 100%;
+		padding: 0 20px 0 20px;
+	}
+
+	.button:hover{
+		background-color: #690521;
+		color: white;
+	}
+
+/*	.button1{
+		position: relative;
+		top: 50%;
+		left: 300px;
+	}
+
+	.button2{
+		position: relative;
+		top: 50%;
+		left 75%;
+	}*/
+
+</style>
+</head>
+<body>
+<div class="header">
+	<img class="logo" src="{% static "transparentSOE.png" %}" alt="Santa Clara University">
+</div>
+
+<div class="button-cont" id="container">
+<button class="button button1" onclick="window.location.href = 'http://ec2-54-241-188-56.us-west-1.compute.amazonaws.com:8080/admin/login/?next=/admin/';">Administrator Login</button>
+<button class="button button2" onclick="window.location.href = 'http://ec2-54-241-188-56.us-west-1.compute.amazonaws.com:8080/accounts/login/';">Judge Login</button>
+</div>
+</body>
+</html>
