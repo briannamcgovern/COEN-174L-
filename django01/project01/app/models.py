@@ -16,8 +16,8 @@ class AuthGroup(models.Model):
 
 
 class AuthGroupPermissions(models.Model):
-    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
-    permission = models.ForeignKey('AuthPermission', models.DO_NOTHING)
+    group = models.ForeignKey(AuthGroup, on_delete=models.CASCADE)
+    permission = models.ForeignKey('AuthPermission', on_delete=models.CASCADE)
 
     class Meta:
         managed = False
@@ -26,7 +26,7 @@ class AuthGroupPermissions(models.Model):
 
 
 class AuthPermission(models.Model):
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)
+    content_type = models.ForeignKey('DjangoContentType', on_delete=models.DO_NOTHING)
     codename = models.CharField(max_length=100)
     name = models.CharField(max_length=255)
 
@@ -54,8 +54,8 @@ class AuthUser(models.Model):
 
 
 class AuthUserGroups(models.Model):
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
-    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
+    user = models.ForeignKey(AuthUser, on_delete=models.CASCADE)
+    group = models.ForeignKey(AuthGroup, on_delete=models.CASCADE)
 
     class Meta:
         managed = False
@@ -64,8 +64,8 @@ class AuthUserGroups(models.Model):
 
 
 class AuthUserUserPermissions(models.Model):
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
-    permission = models.ForeignKey(AuthPermission, models.DO_NOTHING)
+    user = models.ForeignKey(AuthUser, on_delete=models.CASCADE)
+    permission = models.ForeignKey(AuthPermission, on_delete=models.CASCADE)
 
     class Meta:
         managed = False
@@ -79,7 +79,7 @@ class DjangoAdminLog(models.Model):
     object_repr = models.CharField(max_length=200)
     change_message = models.TextField()
     content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING, blank=True, null=True)
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
+    user = models.ForeignKey(AuthUser, on_delete=models.CASCADE)
     action_flag = models.PositiveSmallIntegerField()
 
     class Meta:
@@ -122,9 +122,13 @@ class SurveyAnswer(models.Model):
     response = models.ForeignKey('SurveyResponse', on_delete=models.CASCADE)
     body = models.TextField(blank=True, null=True)
     updated = models.DateTimeField()
+    # newly added track user who submits survey
+	#user = models.ForeignKey(User)
+
+#user = models.ForeignKey(AuthUser, on_delete=models.CASCADE, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = False # changed from False
         db_table = 'survey_answer'
 
 
@@ -132,7 +136,7 @@ class SurveyCategory(models.Model):
     name = models.CharField(max_length=400)
     order = models.IntegerField(blank=True, null=True)
     description = models.CharField(max_length=2000, blank=True, null=True)
-    survey = models.ForeignKey('SurveySurvey', models.DO_NOTHING)
+    survey = models.ForeignKey('SurveySurvey', on_delete=models.CASCADE)
 
     class Meta:
         managed = False
@@ -145,8 +149,8 @@ class SurveyQuestion(models.Model):
     required = models.BooleanField()
     type = models.CharField(max_length=200)
     choices = models.TextField(blank=True, null=True)
-    survey = models.ForeignKey('SurveySurvey', models.DO_NOTHING)
-    category = models.ForeignKey(SurveyCategory, models.DO_NOTHING, blank=True, null=True)
+    survey = models.ForeignKey('SurveySurvey', on_delete=models.CASCADE)
+    category = models.ForeignKey(SurveyCategory, on_delete=models.CASCADE, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -157,11 +161,15 @@ class SurveyResponse(models.Model):
     created = models.DateTimeField()
     updated = models.DateTimeField()
     interview_uuid = models.CharField(max_length=36)
-    survey = models.ForeignKey('SurveySurvey', models.DO_NOTHING)
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    survey = models.ForeignKey('SurveySurvey', on_delete=models.CASCADE)
+	# change many-to-one relationship to many-to-many 
+    user = models.ForeignKey(AuthUser, on_delete=models.CASCADE, blank=True, null=True)
+
+
+#user2 = models.ManyToManyField(AuthUser)
 
     class Meta:
-        managed = False
+        managed = False # changed from False
         db_table = 'survey_response'
 
 

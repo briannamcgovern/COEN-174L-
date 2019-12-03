@@ -1,5 +1,8 @@
-<!DOCTYPE html>
+<!-- results.html -->
+{% extends 'base_site.html' %}
 {% load staticfiles %}
+
+{% block content %}
 <html>
 <head>
 <style>
@@ -9,9 +12,12 @@
 	}
 
 	.header{
-		/*background-color: white;*/
 		margin: 0;
 		padding: 75px 0;
+	}
+	
+	h2{
+		text-align: center;
 	}
 
 	body{
@@ -30,7 +36,6 @@
 		width: 300px;
 		background-color: #a41e35;
   		color: white;
-  		/*border: 2px solid black;*/
   		padding: 50px 56px;
   		text-align: center;
   		text-decoration: none;
@@ -50,37 +55,16 @@
 		background-color: #690521;
 		color: white;
 	}
-
-/*	.button1{
-		position: relative;
-		top: 50%;
-		left: 300px
-	}
-
-	.button2{
-		position: relative;
-		top: 50%;
-		left: 850px;
-	}
-
-	.button3{
-		position: absolute;
-		top: 50%;
-		left: 1000px;
-	} 
- */
-
+	
 	ul{
 		list-style-type: none;
 		margin: 0;
   		padding: 0;
   		overflow: hidden;
-  		/*background-color: #333;*/
 	}
 
 	li a{
   		display: block;
-  		/*color: white;*/
   		text-align: center;
   		padding: 14px 16px;
   		text-decoration: none;
@@ -99,22 +83,134 @@
 		background-color: #d6ba7e;
 	}
 
+	.table{
+		width: 100%;
+		margin-bottom: 1rem;
+		color: #213529;
+	}
+	
+	.table-bordered th,
+	.table-bordered td{
+		border-bottom-width: 2px;
+		width: 50%;
+		border: 1px solid #dee2e6;
+	}
+
+	.table-active,
+	.table-active > th, 
+	.table-active > td{
+		background-color: rgba(0, 0, 0, 0.075);
+	}
+
+	thead{
+		display: table-header-group;
+		vertical-align: middle;
+		border-color: inherit;
+	}
 </style>
+
+<head>
 </head>
+
 <body>
 
-<div class="header">
-	<img class="logo" src="{% static "transparentSOE.png" %}" alt="Santa Clara University">
-</div>
+<table class="table table-bordered">
+	<thead class="table-active">
+	<h1>Session Winners</h1> 
+	<tr>
+		<td>Session</td>
+		<td>Winner</td>
+		<td>Score</td>
+	</tr>
+	</thead>
+	
+	<tr>
+		<td>Bioengineering Session 1</td>
+		<td> {{ bio1_winner }} </td>
+		<td> {{ bio1_winner_num }} </td>
+			<td> {{ bio1_answers }} </td>
+		{# for s in bio1_answers #}
+		{# endfor #}
+	</tr>
+	<tr>
+		<td>Bioengineering Session 2</td>
+		<td> {{ bio2_winner }} </td>
+		<td> {{ bio2_winner_num }} </td>
+	</tr>
+	<tr>
+		<td>Civil Engineering Session 1</td>
+		<td> {{ civil1_winner }} </td>
+		<td> {{ civil1_winner_num }} </td>
+	</tr>
+	<tr>
+		<td>Civil Engineering Session 2</td>
+		<td> {{ civil2_winner }} </td>
+		<td> {{ civil2_winner_num }} </td>
+	</tr>
+	<tr>
+		<td>Computer Engineering Session 1</td>
+		<td> {{ coen1_winner }} </td>
+		<td> {{ coen1_winner_num }} </td>
+	</tr>
+	<tr>
+		<td>Computer Engineering Session 2</td>
+		<td> {{ coen2_winner }} </td>
+		<td> {{ coen2_winner_num }} </td>
+	</tr>
+	<tr>
+		<td>Electrical Engineering Session 1</td>
+		<td> {{ elen1_winner }} </td>
+		<td> {{ elen1_winner_num }} </td>
+	</tr>
+	<tr>
+		<td>Electrical Engineering Session 2</td>
+		<td> {{	elen2_winner }} </td>
+		<td> {{ elen2_winner_num }} </td>
+	</tr>
+	<tr>
+		<td>Interdisciplinary Engineering Session 1</td>
+		<td> {{ interdisciplinary1_winner }} </td>
+		<td> {{ interdisciplincary1_winner_num }} </td>
+	</tr>
+	<tr>
+		<td>Interdisciplinary Engineering Session 2</td>
+		<td> {{ interdisciplinary2_winner }} </td>
+		<td> {{ interdisciplincary2_winner_num }} </td>
+	</tr>
+	<tr>
+		<td>Mechanical Engineering Session 1</td>
+		<td> {{ mech1_winner }} </td>
+		<td> {{ mech1_winner_num }} </td>
+	</tr>
+	<tr>
+		<td>Mechanical Engineering Session 2</td>
+		<td> {{ mech2_winner }} </td>
+		<td> {{ mech2_winner_num }} </td>
+	</tr>
+</table>
 
-{# {% block win %} IT IS I.{% endblock %<ul> #}
-<ul>
-{% for survery_answers in survery_answer %}
-    <li> {{ win }} </li>
+{% for field in f %}
+	<p> Field: {{ field }} </p>
 {% endfor %}
-</ul>
 
-STORY
-<h2>{{ win }}</h2>
+	
+{# for sa in survey_answer #}
+	{# ifequal sa.response_id 1 #}
+		<!-- 
+		<p> Question ID: {{ sa.question_id }} Response:  {{ sa.body }} </p> 
+		<p> Bioengineering Session 1 Winner: {{ bio1_winner }} </p>
+		-->
+	{# endifequal #}
+{# endfor #}
+
+
+
+
+{# for sa in bio1_answers #}
+	<!--
+	<p> response_id: {{ sa }} </p> 
+	<p> body: {{ sa.body }} </p> -->
+{# endfor #}
 </body>
 </html>
+{% endblock %}

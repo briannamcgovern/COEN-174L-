@@ -1,1 +1,4 @@
-django-survey-and-report
+django-survey-and-report # UNINSTALLED
+
+django-survey
+
