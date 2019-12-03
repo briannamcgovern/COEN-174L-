@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+<style>
+
+	* {
+		box-sizing: border-box;	
+	}
+
+	.header{
+		margin: 0;
+		padding: 75px 0;
+	}
+	
+	h2{
+		text-align: center;
+	}
+
+	body{
+		background-color: white;
+		height: 100%;
+		width 100%;
+		font-family: 'Ariel', sans-serif;
+	}
+
+	.button-cont{
+		justify-content: center;
+  		display: inline-flex;
+	}
+
+	.button{
+		width: 300px;
+		background-color: #a41e35;
+  		color: white;
+  		padding: 50px 56px;
+  		text-align: center;
+  		text-decoration: none;
+  		font-size: 20px;
+  		margin: 4px 2px;
+  		cursor: pointer;
+		border-radius: 70%;
+		transition-duration: 0.7s;
+	}
+
+	.logo {
+		width: 100%;
+		padding: 0 20px 0 20px;
+	}
+
+	.button:hover{
+		background-color: #690521;
+		color: white;
+	}
+
+/*	.button1{
+		position: relative;
+		top: 50%;
+		left: 300px
+	}
+
+	.button2{
+		position: relative;
+		top: 50%;
+		left: 850px;
+	}
+
+	.button3{
+		position: absolute;
+		top: 50%;
+		left: 1000px;
+	} 
+ */
+
+	ul{
+		list-style-type: none;
+		margin: 0;
+  		padding: 0;
+  		overflow: hidden;
+	}
+
+	li a{
+  		display: block;
+  		text-align: center;
+  		padding: 14px 16px;
+  		text-decoration: none;
+		cursor: pointer;
+	}
+
+	li a:hover:not(.active) {
+  		background-color: #111;
+	}
+
+	li {
+  		float: left;
+	}
+
+	.active{
+		background-color: #d6ba7e;
+	}
+
+	.table{
+		width: 100%;
+		margin-bottom: 1rem;
+		color: #213529;
+	}
+	
+	.table-bordered th,
+	.table-bordered td{
+		border-bottom-width: 2px;
+		border: 1px solid #dee2e6;
+	}
+
+	.table-active,
+	.table-active > th, 
+	.table-active > td{
+		background-color: rgba(0, 0, 0, 0.075);
+	}
+
+	thead{
+		display: table-header-group;
+		vertical-align: middle;
+		border-color: inherit;
+	}
+
+	tr{
+		display: table-row;
+		vertical-align: inherit;
+		border-color: inherit;
+	}
+
+	.table th, 
+	.table, td{
+		padding: 0.75rem;
+		vertical-align: top;
+	}
+
+	td{
+		display: table-cell;
+	}
+	
+	table{
+		border-collapse: collapse:
+	}
+	
+
+</style>
+</head>
+<body>
+
+<div class="header">
+	<img class="logo" src="{% static "transparentSOE.png" %}" alt="Santa Clara University">
+</div>
+
+{# {% block win %} IT IS I.{% endblock %<ul> #}
+<table class="table table-bordered">
+	<thead class="table-active">
+	<h2>Overall Evaluations for the Senior Design Conference</h2> 
+	<tr>
+	<td>Question</td>
+	<td>Average</td>
+	</tr>
+	</thead>
+	
+	<tr>
+	<td>1</td>
+	<td> {{ average16 }}</td>
+	</tr>
+	<tr>
+	<td>2</td>
+	<td> {{ average17 }}</td>
+	</tr>
+	<tr>
+	<td>3</td>
+	<td> {{ average18 }}</td>
+	</tr>
+	<tr>
+	<td>4</td>
+	<td> {{ average19 }}</td>
+	</tr>
+	<tr>
+	<td>5</td>
+	<td> {{ average20 }}</td>
+	</tr>
+	<tr>
+	<td>6</td>
+	<td> {{ average21 }}</td>
+	</tr>
+	<tr>
+	<td>7</td>
+	<td> {{ average22 }}</td>
+	</tr>
+	<tr>
+	<td>8</td>
+	<td> {{ average23 }}</td>
+	</tr>
+	<tr>
+	<td>9</td>
+	<td> {{ average24 }}</td>
+	</tr>
+	<tr>
+	<td>10</td>
+	<td> {{ average25 }}</td>
+	</tr>
+	<tr>
+	<td>11</td>
+	<td> {{ average26 }}</td>
+	</tr>
+	<tr>
+	<td> Sum of Averages </td>
+	<td> {{ final_sum}} </td>
+	</tr>
+</table>
+
+	
+{% for sa in survey_answer %}
+	{% ifequal sa.response_id 1 %}
+		<p> Question ID: {{ sa.question_id }} Response:  {{ sa.body }} </p>
+	{% endifequal %}
+{% endfor %}
+
+
+
+
+{% for sa in survey_answer %}
+	<p> response_id: {{ sa.response_id }} </p> 
+	<p> body: {{ sa.body }} </p>
+	<br />
+{% endfor %}
+</body>
+</html>

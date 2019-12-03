@@ -42,9 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrapform',
-#'survey',
-	'survey.apps.DjangoSurveyAndReportConfig',
+	'survey',
+#	'survey.apps.DjangoSurveyAndReportConfig',
 	'app',
+	'surveyEdit',
+#	'guardian',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +64,7 @@ ROOT_URLCONF = 'project01.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),"static","templates"),os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),"static","templates","admin"),os.path.join(BASE_DIR,"templates")],
+        'DIRS': [os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),"static","templates"),os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),"static","templates","admin"),os.path.join(BASE_DIR,"templates"),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -138,7 +140,19 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
 CHOICES_SEPARATOR = "," # Or another separator, like | or
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
-#LOGIN_REDIRECT_URL = '/profile.html'
+#LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/profile/'
+LOGOUT_REDIRECT_URL = ''
+SIGNUP_REDIRECT_URL = '/login/'
+SURVEY_REDIRECT_URL = '/profile/'
 
-#SIGNUP_REDIRECT_URL = '/accounts/login'
+# attempt to make surveys secure
+'''LOGIN_REQUIRED_URLS = (
+	r'^/survey/$',
+#r'/survey/1'
+)'''
 
+# to use django guardian for assigned surveys
+#AUTHENTICATION_BACKENDS = [
+#	'guardian.backends.ObjectPermissionBackend'
+#	]

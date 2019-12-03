@@ -1,5 +1,6 @@
 <!-- profile.html -->
 {% extends 'base_site.html' %}
+{% block content %}
 
 <section class="section">
 
@@ -14,21 +15,24 @@
           Welcome {{ request.user.username }}
         </h2>
 
-        <h3 class="subtitle">Surveys You've Created</h3>
+        <!-- <h3 class="subtitle">Surveys You've Created</h3> -->
         <div class="content">
-          <ul>
-            {% for survey in surveys %}
-            <li><a href="">{{ survey.title }}</a></li>
-            {% endfor %}
-          </ul>
+		<ul>
+            {# for survey in surveys #}
+            <!-- <li><a href="">{{ survey.title }}</a></li> -->
+            {# endfor #}
+        </ul>
         </div>
 
         <h3 class="subtitle">Surveys You've Been Assigned</h3>
         <div class="content">
           <ul>
-            {% for assigned_survey in assgined_surveys %}
+            {% for assigned_survey in assigned_surveys %}
             <li><a href="">{{ assigned_survey.survey.title }}</a></li>
             {% endfor %}
+			
+			<!--- added below to test assigned survey -->
+			<!--<a href="Bioe 1 survey">{{ assigned_surveys.survey.title }}</a>-->
           </ul>
         </div>
 
@@ -39,3 +43,15 @@
 
 </section>
 
+<!--- attempt to show assigned survey-->
+<!--<div class="content">
+<a href="Bioe 1 survey">{{ assigned_surveys.survey.title }}</a>
+</div>-->
+ 
+<div class="button-cont" id="container">
+<!-- <button class="button button1" onclick="window.location.href = 'http://ec2-54-241-188-56.us-west-1.compute.amazonaws.com:8080/survey/1/';">Project Evaluation</button>
+<button class="button button2" onclick="window.location.href = 'http://ec2-54-241-188-56.us-west-1.compute.amazonaws.com:8080/survey/2';">Overall Session Evaluation</button> -->
+<button class="button button3" onclick="window.location.href = 'http://ec2-54-241-188-56.us-west-1.compute.amazonaws.com:8080/survey';">All surveys</button> <!-- JUST for testing security of restricted survey pagees -->
+</div>
+</body>
+{% endblock %}
